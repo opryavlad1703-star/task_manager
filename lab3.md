@@ -32,30 +32,23 @@
         <?=$appName?>
     </h1>
     <ul>
-        <li> class="<?=$isCompleted ? "task-done" : "task-pending" ?>">
+        <li class="<?=$isCompleted ? "task-done" : "task-pending" ?>">
             тем: <?=$taskTitle?>
-        <?php if ($isCompleted): ?>
-            ✔️ Виконано
-        <?php else: ?>
-            ⏳ В процесі
-        <?php endif; ?>
+            <?php if ($isCompleted): ?>
+                ✔ Виконано
+            <?php else: ?>
+                ⏳ В процесі
+            <?php endif; ?>
         </li>
-        <li> години на вивчення: <?=$taskTimeEstimate?></li>
+        <li>години на вивчення: <?=$taskTimeEstimate?></li>
     </ul>
 <?php
     foreach ($schedule as $key => $value) {
         $text = implode("|", $value);
-            echo "<p>$key.$text</p>";
+        echo "<p>$key.$text</p>";
     }
 ?>
-    <header>
-        <h1>
-            <?=$taskTitle?> </li>
-            <li><?=$taskTimeEstimate?>години</li>
-        </h1>
-    </header>
-</body>
-</html>
+
 
 # Відповіді на контрольні запитання
 1. Які оператори порівняння існують у PHP (назвіть мінімум 4)?
