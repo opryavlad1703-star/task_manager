@@ -1,17 +1,38 @@
 <?php
+    function formatTitle($text, $maxLength = 20) {
+        if (strlen($text) > $maxLength) {
+            return substr($text, 0, $maxLength) . '...';
+        }
+        return $text;
+    }
+
+    function getCurrentGreeting() {
+        $hour = (int)date('H');
+        
+        if ($hour >= 6 && $hour < 12) {
+            return "Доброго ранку";
+        } elseif ($hour >= 12 && $hour < 18) {
+            return "Добрий день";
+        } elseif ($hour >= 18 && $hour <= 23) {
+            return "Добрий вечір";
+        } else {
+            return "Доброї ночі";
+        }
+    }
+
     $schedule = [
         4 => [2, "Програмування", "Surkov KU"],
         5 => [20, "Бази даних", "Knuschyk AV"],
     ];
 
-    $appName = "Рядок з назвою застосунку Вивчити основи PHP5";
-    $taskTitle = "Вивчити основи PHP5";
+    $appName = "Вивчити основи PHP5";
+    $taskTitle = "Комплексне практичне завдання для вивчення базового синтаксису та основ програмування на PHP5";
     $taskTimeEstimate = 5;
-    $isCompleted = true; 
+    $isCompleted = true;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,11 +48,14 @@
     </style>
 </head>
 <body>
+    <header>
+        <h2><?= getCurrentGreeting() ?>!</h2>
+    </header>
+
     <h1><?=$appName?></h1>
-    
     <ul>
         <li class="<?=$isCompleted ? 'task-done' : 'task-pending'?>">
-            тем: <?=$taskTitle?> 
+            тем: <?= formatTitle($taskTitle) ?>
             <?php if ($isCompleted): ?>
                 ✔️ Виконано
             <?php else: ?>
@@ -47,9 +71,5 @@
         echo "<p>$key.$text</p>";
     }
 ?>
-    <header>
-        <h1><?=$taskTitle?></h1>
-        <p><?=$taskTimeEstimate?> години</p>
-    </header>
 </body>
 </html>
